@@ -45,14 +45,18 @@ namespace EditHosts
                 // Check if the line has a string
                 if (String.IsNullOrEmpty(hostsContentLineElements[i]))
                 {
-                    this.createNodeComment("", xmlTextWriter);
+                    this.createNodeComment("#", xmlTextWriter);
                     continue;
                 }
 
                 // Check if the line is a comment
                 if (hostsContentLineElements[i].Substring(0, 1) == "#")
                 {
-                    this.createNodeComment(hostsContentLineElements[i], xmlTextWriter);
+                    // Check if the sting is only the my infromation
+                    if (!hostsContentLineElements[i].Contains("EditHosts"))
+                    {
+                        this.createNodeComment(hostsContentLineElements[i], xmlTextWriter);
+                    }
                     continue;
                 }
 
